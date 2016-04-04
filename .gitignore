@@ -1,3 +1,5 @@
 # Haskell build files
 *.o
+dist/**
+.stack-work/**
 
