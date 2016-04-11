@@ -1,11 +1,11 @@
-module Benchmark.Time
+module JustBench.Measure.Time
     (
       benchPure,
       benchWeaklyPure,
       TimeBenchResult (..)
     ) where
 
-      import Benchmark
+      import JustBench.Measure
       import qualified Criterion.Types as T
       import Criterion.Main
       import Criterion.Measurement
