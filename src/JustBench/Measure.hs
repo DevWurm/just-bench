@@ -18,20 +18,20 @@ module JustBench.Measure
         fromMeasured :: T.Measured -> r
 
       {- Create Benchmark of a pure function with normal form evaluation -}
-      benchPure :: (NFData b) => Int -> (a -> b) -> a -> IO T.Measured
+      benchPure :: (NFData b, BenchResult c) => Int -> (a -> b) -> a -> IO c
       benchPure it f arg = do
                             let
                               generalIt = fromIntegral it
                             (result, _) <- nf f arg `measure` generalIt
-                            return $ measuredAverage it result
+                            return . fromMeasured . measuredAverage it $ result
 
       {- Create Benchmark of a pure function with weak head normal form evaluation -}
-      benchWeaklyPure :: Int -> (a -> b) -> a -> IO T.Measured
+      benchWeaklyPure :: (BenchResult c) => Int -> (a -> b) -> a -> IO c
       benchWeaklyPure it f arg = do
                                  let
                                     generalIt = fromIntegral it
                                  (result, _) <- whnf f arg `measure` generalIt
-                                 return $ measuredAverage it result
+                                 return . fromMeasured . measuredAverage it $ result
 
       {- Function for creating the average measurement results for one iteration
        from an measurement m with n iterations -}
