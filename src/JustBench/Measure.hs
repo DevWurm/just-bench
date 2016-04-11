@@ -1,6 +1,6 @@
 module JustBench.Measure
     (
-    BenchResult,
+    BenchResult (fromMeasured),
     benchPure,
     benchWeaklyPure
     ) where
