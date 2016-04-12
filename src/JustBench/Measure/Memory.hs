@@ -13,13 +13,6 @@ module JustBench.Measure.Memory
                                }
                                deriving (Show)
 
-      fromMemoryMeasure :: Measured -> MemoryBenchResult
-      fromMemoryMeasure m = MemoryBenchResult {
-                              allocated = fromIntegral $ measAllocated m,
-                              copied = fromIntegral $ measBytesCopied m,
-                              iterations = fromIntegral $ measIters m
-                            }
-
       instance BenchResult MemoryBenchResult where
         fromMeasured m = MemoryBenchResult {
                                 allocated = fromIntegral $ measAllocated m,
